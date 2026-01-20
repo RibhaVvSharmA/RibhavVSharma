@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=FIS">
+    <title>FORM</title>
+    <style>
+    .error {
+      color: red;
+      font-size: 16px;
+      display: none;
+    }
+    input {
+      border: 2px solid red;
+      padding: 5px;
+      width: 250px;
+    }
+  </style>
+</head>
+<body>
+<h2>Student Registration</h2>
+<form onsubmit="return validate()">
+  Full Name:<br>
+  <input type="text" id="name"><br>
+  <span class="error" id="nameErr">Must contain 9–50 letters</span>
+  <br>
+  <br>
+  Email:
+  <br>
+  <input type="text" id="email"><br>
+  <span class="error" id="emailErr">Valid email required</span><br><br>
+  Age:
+  <br>
+  <input type="number" id="age"><br>
+  <span class="error" id="ageErr">Age 16–30 only</span><br><br>
+  <button type="submit">Register</button>
+</form>
+<script>
+function validate() {
+  let valid = true;
+  document.getElementById("nameErr").style.display = "none";
+  document.getElementById("emailErr").style.display = "none";
+  document.getElementById("ageErr").style.display = "none";
+
+  let name = document.getElementById("name").value;
+  let email = document.getElementById("email").value;
+  let age = document.getElementById("age").value;
+  if (name.length < 9 || name.length > 50) {
+    document.getElementById("nameErr").style.display = "block";
+    valid = false;
+  }
+  if (!email.includes("@")) {
+    document.getElementById("emailErr").style.display = "block";
+    valid = false;
+  }
+  if (age < 16 || age > 30) {
+    document.getElementById("ageErr").style.display = "block";
+    valid = false;
+  }
+  return valid;
+}
+</script>
+</body>
+</html>

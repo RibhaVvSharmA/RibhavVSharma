@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Bank Interface</title>
+  <style>
+    
+    body {
+        padding-left: 550px;
+        padding-top: 100px;
+      font-family: Arial;
+    }
+    .box {
+      width: 300px;
+      padding: 30px;
+      border: 2px solid #ccc;
+    }
+    button {
+      padding: 20px 30px;
+      margin: 10px 5px;
+      cursor: pointer;
+    }
+    .deposit {
+      background: blue;
+      color: white;
+      border: none;
+      font-size: 16px;
+    }
+    .withdraw {
+      background: red;
+      color: white;
+      border: none;
+      font-size: 16px;
+    }
+    .error {
+      color: red;
+      font-weight: bold;
+    }
+    #amount{
+        font-size: 20px;
+    }
+  </style>
+</head>
+<body>
+<div class="box">
+  <h2>Balance: $<span id="balance">1000</span></h2>
+  <p style="font-size: 22px;">Amount</p>
+  <input type="number" id="amount"><br><br>
+
+  <button class="deposit" onclick="deposit()">Deposit</button>
+  <button class="withdraw" onclick="withdraw()">Withdraw</button>
+  <p class="error" id="msg"></p>
+</div>
+<script>
+  let balance = 1000;
+
+  function deposit() {
+    let amt = Number(document.getElementById("amount").value);
+
+    if (amt <= 0) {
+      document.getElementById("msg").innerText = "Invalid amount!";
+      return;
+    }
+    balance += amt;
+    document.getElementById("balance").innerText = balance;
+    document.getElementById("msg").innerText = "";
+  }
+
+  function withdraw() {
+    let amt = Number(document.getElementById("amount").value);
+
+    if (amt <= 0 || amt > balance) {
+      document.getElementById("msg").innerText = "Invalid amount!";
+      return;
+    }
+    balance -= amt;
+    document.getElementById("balance").innerText = balance;
+    document.getElementById("msg").innerText = "";
+  }
+</script>
+</body>
+</html>

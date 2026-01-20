@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Admin Dashboard</title>
+<style>
+:root {
+  --bg: #ffffff;
+  --text: #222;
+  --card: #ececec;
+  --header: #f5f5f5;
+}
+.dark {
+  --bg: #0c1a2b;
+  --text: #ffffff;
+  --card: #14263b;
+  --header: #102133;
+}
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Arial, sans-serif;
+}
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 20px;
+  background: var(--header);
+  font-size: 22px;
+  font-weight: 600;
+}
+#toggleBtn {
+  border: 1px solid #6665;
+  padding: 6px 15px;
+  border-radius: 6px;
+  cursor: pointer;
+  background: transparent;
+  color: var(--text);
+}
+.container {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 15px;
+  padding: 20px;
+}
+.sidebar {
+  background: var(--card);
+  border-radius: 8px;
+  padding: 20px;
+  font-size: 20px;
+  font-weight: bold;
+}
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(160px,1fr));
+  gap: 19px;
+}
+.card {
+  background: var(--card);
+  border-radius: 8px;
+  padding: 25px;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.2s ease;
+  height: 200px;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 10px #0003;
+}
+.card:active {
+  transform: scale(0.96);
+  opacity: 0.9;
+}
+</style>
+</head>
+
+<body>
+<header>
+  Welcome Admin
+  <button id="toggleBtn">Toggle Mode</button>
+</header>
+
+<div class="container">
+  <div class="sidebar card">Navigation</div>
+  <div class="cards">
+    <div class="card" onclick="btnClick('Analytics')">Analytics</div>
+    <div class="card" onclick="btnClick('Users')">Users</div>
+    <div class="card" onclick="btnClick('Orders')">Orders</div>
+    <div class="card" onclick="btnClick('Settings')">Settings</div>
+  </div>
+</div>
+
+<script>
+if(localStorage.getItem("theme") === "dark"){
+  document.body.classList.add("dark");
+}
+toggleBtn.onclick = () => {
+  document.body.classList.toggle("dark");
+  localStorage.setItem("theme",
+    document.body.classList.contains("dark") ? "dark" : "light"
+  );
+}
+function btnClick(name){
+  alert(name + " button clicked!");
+}
+</script>
+</body>
+</html>
